@@ -40,27 +40,27 @@
 
 # Module 3: コアコンテンツとバージョン管理
 ## フレームワークコンテンツ管理
-- [ ] Task 3.1: バックエンドでのフレームワークコンテンツ管理
+- [x] Task 3.1: バックエンドでのフレームワークコンテンツ管理
   バックエンドに/frameworksエンドポイントを実装する。business_frameworksテーブルに、SWOT分析とユーザージャーニーマップの初期データを投入する。
-- [ ] Task 3.2: フロントエンドでのコンテンツ表示
+- [x] Task 3.2: フロントエンドでのコンテンツ表示
   フロントエンドに、フレームワーク一覧ページと、各フレームワークのマイクロコンテンツを表示するページを構築する。これはフリープランの主要機能となる。
-- [ ] Task 3.3: プレミアム機能のアクセス制御
+- [x] Task 3.3: プレミアム機能のアクセス制御
   バックエンドに、JWTペイロード内のsubscription_tierを検証するミドルウェア（またはDepends）を実装する。プレミアム限定のエンドポイント（例: /ai/interact）に対して、フリープランのユーザーからのアクセスがあった場合に403 Forbiddenエラーを返すようにする。
 
 ## アウトプットバージョン管理システム
-- [ ] Task 3.4: バージョン管理API基盤の実装
+- [x] Task 3.4: バージョン管理API基盤の実装
   アウトプットのバージョン管理機能を実装する。POST /outputs/{output_id}/versionsで新バージョン作成、GET /outputs/{output_id}/versionsでバージョン履歴取得、GET /outputs/{output_id}/versions/{version_id}で特定バージョン取得のエンドポイントを作成する。
-- [ ] Task 3.5: 自動保存機能の実装
+- [x] Task 3.5: 自動保存機能の実装
   30秒ごとの自動保存機能を実装する。フロントエンドでsetIntervalを使用してドラフトを自動保存し、バックエンドで/outputs/{output_id}/auto-saveエンドポイントを作成する。
-- [ ] Task 3.6: バージョン差分表示機能の実装
+- [x] Task 3.6: バージョン差分表示機能の実装
   バージョン間の差分を表示する機能を実装する。GET /outputs/{output_id}/versions/{version1_id}/diff/{version2_id}エンドポイントで差分データを返し、フロントエンドで視覚的にハイライト表示する。
-- [ ] Task 3.7: バージョン復元機能の実装
+- [x] Task 3.7: バージョン復元機能の実装
   任意のバージョンへの復元機能を実装する。POST /outputs/{output_id}/versions/{version_id}/restoreエンドポイントを作成し、指定バージョンを現在バージョンとして復元する。
 
 ## 学習セッション追跡システム
-- [ ] Task 3.8: 学習セッション管理APIの実装
+- [x] Task 3.8: 学習セッション管理APIの実装
   user_learning_sessionsテーブルを活用した学習セッション管理機能を実装する。POST /learning-sessions/startでセッション開始、PUT /learning-sessions/{session_id}/progressで進捗更新、POST /learning-sessions/{session_id}/completeでセッション完了のエンドポイントを作成する。
-- [ ] Task 3.9: セッション分析機能の実装
+- [x] Task 3.9: セッション分析機能の実装
   学習セッションの分析機能を実装する。GET /users/me/learning-analyticsで学習時間、完了率、苦手分野などの統計情報を返すエンドポイントを作成する。
 
 # Module 4: AIコパイロット (Gemini連携)

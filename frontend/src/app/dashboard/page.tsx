@@ -76,9 +76,9 @@ export default function DashboardPage() {
               <p className="text-blue-600 dark:text-blue-300 mb-4">
                 Analyze your strengths, weaknesses, opportunities, and threats with AI guidance.
               </p>
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              <a href="/frameworks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block text-center">
                 Start Analysis
-              </button>
+              </a>
             </div>
             
             <div className="bg-green-50 dark:bg-green-900 p-6 rounded-lg">
@@ -88,9 +88,9 @@ export default function DashboardPage() {
               <p className="text-green-600 dark:text-green-300 mb-4">
                 Map your customer's journey with AI-powered insights.
               </p>
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+              <a href="/frameworks" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block text-center">
                 Create Journey
-              </button>
+              </a>
             </div>
             
             <div className="bg-purple-50 dark:bg-purple-900 p-6 rounded-lg">

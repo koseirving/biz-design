@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, users, data_privacy, preferences
+from app.api import auth, users, data_privacy, preferences, frameworks, outputs, learning
 from app.core.database import engine
 from app.models import user
 
@@ -19,10 +19,13 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(auth.router)
-app.include_router(users.router)
-app.include_router(data_privacy.router)
-app.include_router(preferences.router)
+app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(users.router, prefix="/users", tags=["Users"])
+app.include_router(data_privacy.router, prefix="/users", tags=["Data Privacy"])
+app.include_router(preferences.router, prefix="/users", tags=["Preferences"])
+app.include_router(frameworks.router, prefix="/frameworks", tags=["Frameworks"])
+app.include_router(outputs.router, prefix="/outputs", tags=["Outputs"])
+app.include_router(learning.router, prefix="/learning", tags=["Learning"])
 
 @app.get("/")
 def read_root():

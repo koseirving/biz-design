@@ -24,6 +24,10 @@ class BusinessFramework(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     name = Column(String(100), nullable=False)
     description = Column(Text, nullable=True)
+    category = Column(String(50), nullable=False, default='strategy')
+    difficulty_level = Column(String(20), nullable=False, default='beginner')
+    estimated_duration = Column(Integer, nullable=False, default=30)
+    is_premium = Column(Boolean, default=False, nullable=False)
     micro_content = Column(JSON, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now(), nullable=False)
 
@@ -58,7 +62,7 @@ class UserProgress(Base):
     event_type = Column(String(50), nullable=False)
     entity_id = Column(UUID(as_uuid=True), nullable=True)
     points_awarded = Column(Integer, nullable=True)
-    metadata = Column(JSON, nullable=True)
+    event_metadata = Column(JSON, nullable=True)
     created_at = Column(TIMESTAMP(timezone=True), server_default=func.now(), nullable=False)
 
 
@@ -116,5 +120,5 @@ class UserBadge(Base):
     user_id = Column(UUID(as_uuid=True), nullable=False)
     badge_type = Column(String(50), nullable=False)
     badge_name = Column(String(100), nullable=False)
-    badge_metadata = Column(JSON, nullable=True)
+    badge_data = Column(JSON, nullable=True)
     earned_at = Column(TIMESTAMP(timezone=True), server_default=func.now(), nullable=False)
