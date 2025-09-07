@@ -1,27 +1,39 @@
 steps:
   # Build backend Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/biz-design-backend:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/biz-design-backend:latest', './backend']
+    args: 
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:$COMMIT_SHA'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:latest'
+      - './backend'
     dir: '.'
 
   # Build frontend Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/biz-design-frontend:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/biz-design-frontend:latest', './frontend']
+    args:
+      - 'build' 
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:$COMMIT_SHA'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:latest'
+      - './frontend'
     dir: '.'
 
-  # Push backend image to Container Registry
+  # Push backend image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/biz-design-backend:$COMMIT_SHA']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:$COMMIT_SHA']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/biz-design-backend:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:latest']
 
-  # Push frontend image to Container Registry
+  # Push frontend image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/biz-design-frontend:$COMMIT_SHA']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:$COMMIT_SHA']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/biz-design-frontend:latest']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:latest']
 
   # Deploy backend to Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
@@ -30,7 +42,7 @@ steps:
       - 'deploy'
       - 'biz-design-backend'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/biz-design-backend:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:$COMMIT_SHA'
       - '--platform'
       - 'managed'
       - '--region'
@@ -58,7 +70,7 @@ steps:
       - 'deploy'
       - 'biz-design-frontend'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/biz-design-frontend:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:$COMMIT_SHA'
       - '--platform'
       - 'managed'
       - '--region'
