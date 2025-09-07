@@ -1,8 +1,8 @@
 # Module 1: プロジェクトのセットアップと基盤構築
 - [x] Task 1.1: GCPプロジェクトの初期化design.md#6.1の記述に基づき、gcloudコマンドを実行してGCPプロジェクトの作成、APIの有効化、サービスアカウントの作成を行う。
 - [x] Task 1.2: Gitリポジトリとプロジェクト構造のセットアップ新規Gitリポジトリを作成する。リポジトリのルートにfrontendとbackendの2つのディレクトリを作成する。frontendディレクトリ内でnpx create-next-app@latestを実行し、Next.jsプロジェクトを初期化する。backendディレクトリ内でFastAPIプロジェクトの基本構造（main.py, requirements.txtなど）を作成する。
-- [ ] Task 1.3: "Hello World"アプリケーションの実装とDocker化frontendとbackendそれぞれで、簡単な"Hello World"レスポンスを返すエンドポイントを実装する。各サービス用のDockerfileを作成する。
-- [ ] Task 1.4: CI/CDパイプラインの初期検証基本的なcloudbuild.yamlを作成する。Gitリポジトリにプッシュし、Cloud Buildがトリガーされ、2つの"Hello World"アプリケーションがCloud Runサービスとしてデプロイされることを確認する。
+- [x] Task 1.3: "Hello World"アプリケーションの実装とDocker化frontendとbackendそれぞれで、簡単な"Hello World"レスポンスを返すエンドポイントを実装する。各サービス用のDockerfileを作成する。
+- [x] Task 1.4: CI/CDパイプラインの初期検証基本的なcloudbuild.yamlを作成する。Gitリポジトリにプッシュし、Cloud Buildがトリガーされ、2つの"Hello World"アプリケーションがCloud Runサービスとしてデプロイされることを確認する。
 
 # Module 2: データベースとユーザー認証
 ## 基本データベースセットアップ
