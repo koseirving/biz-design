@@ -3,19 +3,255 @@ import csv
 import uuid
 import os
 from datetime import datetime, timedelta
-from io import StringIO
-from typing import Dict, Any, List
+from io import StringIO, BytesIO
+from typing import Dict, Any, List, Optional
 from sqlalchemy.orm import Session
 from app.models.user import (
     User, UserOutput, CompanyProfile, UserProgress,
     UserLearningSession, NotificationPreferences, 
     NotificationHistory, UserBadge
 )
+import logging
+import zipfile
+from pathlib import Path
+
+logger = logging.getLogger(__name__)
+
+class ExportFormat:
+    """Export format constants"""
+    JSON = "json"
+    CSV = "csv" 
+    XML = "xml"
+    PDF = "pdf"
+    ZIP = "zip"
+
+
+class ExportStatus:
+    """Export status constants"""
+    PENDING = "pending"
+    PROCESSING = "processing"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    EXPIRED = "expired"
+
 
 class DataExportService:
     
+    def __init__(self, storage_backend: str = "local"):
+        self.storage_backend = storage_backend
+        self.exports_dir = Path("/tmp/exports")
+        self.exports_dir.mkdir(exist_ok=True)
+        
+        # In production, initialize GCS client
+        self.gcs_client = None
+        self.gcs_bucket = None
+        
+    def create_export_request(self, db: Session, user_id: str, formats: List[str] = None) -> Dict[str, str]:
+        """Create a new export request and return tracking information"""
+        
+        if formats is None:
+            formats = [ExportFormat.JSON, ExportFormat.CSV]
+        
+        export_id = str(uuid.uuid4())
+        request_timestamp = datetime.utcnow()
+        
+        # Store export request metadata (in production, use database table)
+        export_metadata = {
+            'export_id': export_id,
+            'user_id': user_id,
+            'formats': formats,
+            'status': ExportStatus.PENDING,
+            'created_at': request_timestamp.isoformat(),
+            'expires_at': (request_timestamp + timedelta(days=7)).isoformat(),
+            'download_urls': {},
+            'file_sizes': {},
+            'checksum': {}
+        }
+        
+        logger.info(f"Created export request {export_id} for user {user_id}")
+        
+        # In production, store in database and process asynchronously
+        return self._process_export_request(db, export_metadata)
+    
+    def _process_export_request(self, db: Session, export_metadata: Dict[str, Any]) -> Dict[str, str]:
+        """Process the export request and generate files"""
+        
+        try:
+            export_metadata['status'] = ExportStatus.PROCESSING
+            
+            user_id = export_metadata['user_id']
+            export_id = export_metadata['export_id']
+            formats = export_metadata['formats']
+            
+            # Collect user data
+            user_data = self._collect_user_data(db, user_id)
+            
+            # Generate files for each requested format
+            generated_files = {}
+            
+            for format_type in formats:
+                if format_type == ExportFormat.JSON:
+                    content = self._generate_json_export(user_data)
+                    filename = f"user_data_export_{export_id}.json"
+                    
+                elif format_type == ExportFormat.CSV:
+                    content = self._generate_csv_export(user_data)
+                    filename = f"user_data_export_{export_id}.csv"
+                    
+                elif format_type == ExportFormat.XML:
+                    content = self._generate_xml_export(user_data)
+                    filename = f"user_data_export_{export_id}.xml"
+                    
+                elif format_type == ExportFormat.PDF:
+                    content = self._generate_pdf_export(user_data)
+                    filename = f"user_data_export_{export_id}.pdf"
+                    
+                else:
+                    continue
+                
+                # Save file and get metadata
+                file_info = self._save_export_file(filename, content)
+                generated_files[format_type] = file_info
+            
+            # Create ZIP archive if multiple formats
+            if len(formats) > 1:
+                zip_info = self._create_zip_archive(export_id, generated_files)
+                generated_files[ExportFormat.ZIP] = zip_info
+            
+            # Update export metadata
+            export_metadata['status'] = ExportStatus.COMPLETED
+            export_metadata['completed_at'] = datetime.utcnow().isoformat()
+            export_metadata['files'] = generated_files
+            
+            # Generate download URLs
+            download_urls = {}
+            for format_type, file_info in generated_files.items():
+                download_urls[format_type] = f"/api/users/download/{file_info['filename']}"
+            
+            export_metadata['download_urls'] = download_urls
+            
+            logger.info(f"Completed export request {export_id} for user {user_id}")
+            
+            return {
+                'export_id': export_id,
+                'status': ExportStatus.COMPLETED,
+                'download_urls': download_urls,
+                'expires_at': export_metadata['expires_at'],
+                'formats': formats,
+                'total_files': len(generated_files)
+            }
+            
+        except Exception as e:
+            export_metadata['status'] = ExportStatus.FAILED
+            export_metadata['error'] = str(e)
+            logger.error(f"Failed to process export request {export_metadata['export_id']}: {str(e)}")
+            
+            return {
+                'export_id': export_metadata['export_id'],
+                'status': ExportStatus.FAILED,
+                'error': str(e)
+            }
+    
+    def _save_export_file(self, filename: str, content: str) -> Dict[str, Any]:
+        """Save export file to storage backend"""
+        
+        file_path = self.exports_dir / filename
+        
+        # Calculate file size and checksum
+        content_bytes = content.encode('utf-8') if isinstance(content, str) else content
+        file_size = len(content_bytes)
+        
+        import hashlib
+        checksum = hashlib.sha256(content_bytes).hexdigest()
+        
+        # Save to local storage (in production, save to GCS)
+        if self.storage_backend == "local":
+            with open(file_path, 'wb' if isinstance(content_bytes, bytes) else 'w') as f:
+                f.write(content_bytes if isinstance(content_bytes, bytes) else content)
+        
+        # In production, upload to Google Cloud Storage
+        # elif self.storage_backend == "gcs":
+        #     blob = self.gcs_bucket.blob(f"exports/{filename}")
+        #     blob.upload_from_string(content_bytes)
+        
+        return {
+            'filename': filename,
+            'file_path': str(file_path),
+            'file_size': file_size,
+            'checksum': checksum,
+            'created_at': datetime.utcnow().isoformat(),
+            'storage_backend': self.storage_backend
+        }
+    
+    def _create_zip_archive(self, export_id: str, files: Dict[str, Dict[str, Any]]) -> Dict[str, Any]:
+        """Create ZIP archive containing all export files"""
+        
+        zip_filename = f"user_data_export_{export_id}.zip"
+        zip_path = self.exports_dir / zip_filename
+        
+        with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zip_file:
+            for format_type, file_info in files.items():
+                if format_type != ExportFormat.ZIP:  # Don't include ZIP in ZIP
+                    file_path = Path(file_info['file_path'])
+                    if file_path.exists():
+                        zip_file.write(file_path, file_path.name)
+        
+        # Get ZIP file metadata
+        zip_size = zip_path.stat().st_size
+        
+        with open(zip_path, 'rb') as f:
+            import hashlib
+            zip_checksum = hashlib.sha256(f.read()).hexdigest()
+        
+        return {
+            'filename': zip_filename,
+            'file_path': str(zip_path),
+            'file_size': zip_size,
+            'checksum': zip_checksum,
+            'created_at': datetime.utcnow().isoformat(),
+            'storage_backend': self.storage_backend,
+            'contains_files': list(files.keys())
+        }
+    
+    def get_export_status(self, export_id: str) -> Dict[str, Any]:
+        """Get status of an export request"""
+        
+        # In production, query from database
+        # For now, return mock status
+        return {
+            'export_id': export_id,
+            'status': ExportStatus.COMPLETED,
+            'created_at': datetime.utcnow().isoformat(),
+            'expires_at': (datetime.utcnow() + timedelta(days=7)).isoformat(),
+            'progress': 100
+        }
+    
+    def cleanup_expired_exports(self) -> int:
+        """Clean up expired export files"""
+        
+        cleaned_count = 0
+        
+        # Get all export files older than 7 days
+        cutoff_date = datetime.utcnow() - timedelta(days=7)
+        
+        for file_path in self.exports_dir.glob("user_data_export_*"):
+            try:
+                file_mtime = datetime.fromtimestamp(file_path.stat().st_mtime)
+                if file_mtime < cutoff_date:
+                    file_path.unlink()
+                    cleaned_count += 1
+                    logger.info(f"Cleaned up expired export file: {file_path.name}")
+                    
+            except Exception as e:
+                logger.error(f"Failed to clean up file {file_path}: {str(e)}")
+        
+        return cleaned_count
+    
     @staticmethod
     def export_user_data(db: Session, user_id: str) -> Dict[str, str]:
+        """Legacy method for backward compatibility"""
+        service = DataExportService()
+        return service.create_export_request(db, user_id)
         """Export all user data in JSON and CSV formats"""
         user = db.query(User).filter(User.id == user_id).first()
         if not user:
@@ -209,3 +445,78 @@ class DataExportService:
             output.write("\n")
         
         return output.getvalue()
+    
+    def _generate_xml_export(self, user_data: Dict[str, Any]) -> str:
+        """Generate XML export"""
+        
+        def dict_to_xml(data, parent_tag="data"):
+            xml_parts = [f"<{parent_tag}>"]
+            
+            for key, value in data.items():
+                if isinstance(value, dict):
+                    xml_parts.append(dict_to_xml(value, key))
+                elif isinstance(value, list):
+                    xml_parts.append(f"<{key}>")
+                    for item in value:
+                        if isinstance(item, dict):
+                            xml_parts.append(dict_to_xml(item, "item"))
+                        else:
+                            xml_parts.append(f"<item>{self._xml_escape(str(item))}</item>")
+                    xml_parts.append(f"</{key}>")
+                else:
+                    xml_parts.append(f"<{key}>{self._xml_escape(str(value))}</{key}>")
+            
+            xml_parts.append(f"</{parent_tag}>")
+            return "\n".join(xml_parts)
+        
+        xml_header = '<?xml version="1.0" encoding="UTF-8"?>\n'
+        xml_content = dict_to_xml(user_data, "user_export")
+        
+        return xml_header + xml_content
+    
+    def _xml_escape(self, text: str) -> str:
+        """Escape special characters for XML"""
+        return (text.replace("&", "&amp;")
+                   .replace("<", "&lt;")
+                   .replace(">", "&gt;")
+                   .replace('"', "&quot;")
+                   .replace("'", "&apos;"))
+    
+    def _generate_pdf_export(self, user_data: Dict[str, Any]) -> bytes:
+        """Generate PDF export (simplified version)"""
+        
+        # For full PDF generation, would use libraries like reportlab
+        # This is a simplified version that generates a PDF-like structure
+        
+        pdf_content = f"""
+        USER DATA EXPORT - PDF FORMAT
+        ============================
+        
+        Export Date: {user_data.get('export_timestamp', 'Unknown')}
+        
+        USER PROFILE:
+        {json.dumps(user_data.get('user_profile', {}), indent=2)}
+        
+        OUTPUTS:
+        {json.dumps(user_data.get('outputs', []), indent=2)}
+        
+        COMPANY PROFILES:
+        {json.dumps(user_data.get('company_profiles', []), indent=2)}
+        
+        PROGRESS DATA:
+        {json.dumps(user_data.get('progress', []), indent=2)}
+        
+        LEARNING SESSIONS:
+        {json.dumps(user_data.get('learning_sessions', []), indent=2)}
+        
+        NOTIFICATION PREFERENCES:
+        {json.dumps(user_data.get('notification_preferences', {}), indent=2)}
+        
+        BADGES:
+        {json.dumps(user_data.get('badges', []), indent=2)}
+        
+        ---
+        Generated by GDPR-compliant data export system
+        """
+        
+        return pdf_content.encode('utf-8')
