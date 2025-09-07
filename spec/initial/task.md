@@ -6,36 +6,36 @@
 
 # Module 2: データベースとユーザー認証
 ## 基本データベースセットアップ
-- [ ] Task 2.1: データベースのプロビジョニングとスキーマ作成
+- [x] Task 2.1: データベースのプロビジョニングとスキーマ作成
   Cloud SQL for PostgreSQLインスタンスをプロビジョニングする。基本テーブル（users, business_frameworks, user_outputs, company_profiles, user_progress）を作成する。
-- [ ] Task 2.2: 拡張テーブルの作成
+- [x] Task 2.2: 拡張テーブルの作成
   新機能用テーブルを追加作成する：
   - user_learning_sessions（学習セッション管理）
   - notification_preferences（通知設定）
   - notification_history（通知履歴）
   - output_versions（バージョン管理）
   - user_badges（バッジ管理）
-- [ ] Task 2.3: Redisインフラストラクチャのセットアップ
+- [x] Task 2.3: Redisインフラストラクチャのセットアップ
   Cloud MemorystoreでRedisインスタンスをプロビジョニングする。通知キュー用（db=1）とセッションキャッシュ用（db=0）の設定を行う。
 
 ## 認証システム
-- [ ] Task 2.4: バックエンド認証エンドポイントの実装
+- [x] Task 2.4: バックエンド認証エンドポイントの実装
   FastAPIバックエンドに、/auth/registerおよび/auth/loginエンドポイントを実装する。パスワードのハッシュ化にはbcryptライブラリを使用する。
-- [ ] Task 2.5: JWT生成とCookie設定ロジックの実装
+- [x] Task 2.5: JWT生成とCookie設定ロジックの実装
   ログイン成功時に、アクセストークンとリフレッシュトークンを生成するロジックを実装する。生成したトークンをHttpOnly属性付きのCookieとしてレスポンスに設定する。
-- [ ] Task 2.6: フロントエンド認証フォームの実装
+- [x] Task 2.6: フロントエンド認証フォームの実装
   Next.jsフロントエンドに、新規登録フォームとログインフォームのUIコンポーネントを構築する。
-- [ ] Task 2.7: Next.js BFFプロキシの実装
+- [x] Task 2.7: Next.js BFFプロキシの実装
   認証関連のエンドポイント（/api/proxy/auth/...）をNext.js API Routesとして実装し、バックエンドへのリクエストを中継する。
-- [ ] Task 2.8: クライアントサイドの認証状態管理
+- [x] Task 2.8: クライアントサイドの認証状態管理
   React Context APIを使用して、ユーザーのログイン状態をグローバルに管理するAuthProviderを実装する。
 
 ## データプライバシー機能
-- [ ] Task 2.9: ユーザーデータエクスポート機能の実装
+- [x] Task 2.9: ユーザーデータエクスポート機能の実装
   /users/data-exportエンドポイントを実装する。ユーザーの全データ（プロファイル、学習履歴、アウトプット、進捗）をJSON/CSV形式で生成し、7日間有効なダウンロードURLを返す。
-- [ ] Task 2.10: GDPRアカウント削除機能の実装
+- [x] Task 2.10: GDPRアカウント削除機能の実装
   /users/deleteエンドポイントを実装する。段階的削除プロセス（ソフトデリート→匿名化→物理削除）をCloud Tasksでスケジューリングする。
-- [ ] Task 2.11: 通知設定管理APIの実装
+- [x] Task 2.11: 通知設定管理APIの実装
   /users/preferencesエンドポイントを実装する。メール通知、プッシュ通知、リマインダー設定のCRUD操作を提供する。
 
 # Module 3: コアコンテンツとバージョン管理
