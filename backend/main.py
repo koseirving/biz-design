@@ -1,14 +1,28 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, users, data_privacy, preferences, frameworks, outputs, learning, company_profiles, progress, notifications, reviews, email_templates, websocket
+from app.api import auth, users, data_privacy, preferences, frameworks, outputs, learning, company_profiles, progress, notifications, reviews, email_templates, websocket, gdpr_compliance, audit_logs, rate_limits
 from app.routers import ai
 from app.core.database import engine
+from app.core.middleware import APILimiter
 from app.models import user
+import redis
+import os
 
 # Create database tables
 user.Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Biz Design API", description="AI-powered business framework learning platform", version="2.0.0")
+
+# Initialize Redis for rate limiting
+redis_client = redis.Redis(
+    host=os.getenv("REDIS_HOST", "localhost"),
+    port=int(os.getenv("REDIS_PORT", 6379)),
+    db=0,
+    decode_responses=True
+)
+
+# Initialize API Limiter
+api_limiter = APILimiter(redis=redis_client)
 
 # CORS middleware for frontend communication
 app.add_middleware(
@@ -34,6 +48,9 @@ app.include_router(notifications.router, prefix="/notifications", tags=["Notific
 app.include_router(reviews.router, prefix="/reviews", tags=["Reviews & Learning"])
 app.include_router(email_templates.router, prefix="/email", tags=["Email Templates"])
 app.include_router(websocket.router, prefix="/realtime", tags=["Real-time Notifications"])
+app.include_router(gdpr_compliance.router, prefix="/gdpr", tags=["GDPR Compliance"])
+app.include_router(audit_logs.router, prefix="/audit", tags=["Security Audit Logs"])
+app.include_router(rate_limits.router, prefix="/admin/rate-limits", tags=["Rate Limiting Management"])
 
 @app.get("/")
 def read_root():
