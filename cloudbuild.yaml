@@ -1,36 +1,37 @@
+substitutions:
+  _IMAGE_TAG: '${SHORT_SHA}'
+
 steps:
   # Build backend Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: 
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:${_IMAGE_TAG}'
       - '-t'
       - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:latest'
       - './backend'
-    dir: '.'
 
   # Build frontend Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build' 
       - '-t'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:${_IMAGE_TAG}'
       - '-t'
       - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:latest'
       - './frontend'
-    dir: '.'
 
   # Push backend image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:$COMMIT_SHA']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:${_IMAGE_TAG}']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:latest']
 
   # Push frontend image to Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:$COMMIT_SHA']
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:${_IMAGE_TAG}']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:latest']
@@ -42,7 +43,7 @@ steps:
       - 'deploy'
       - 'biz-design-backend'
       - '--image'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/backend:${_IMAGE_TAG}'
       - '--platform'
       - 'managed'
       - '--region'
@@ -70,7 +71,7 @@ steps:
       - 'deploy'
       - 'biz-design-frontend'
       - '--image'
-      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/biz-design/frontend:${_IMAGE_TAG}'
       - '--platform'
       - 'managed'
       - '--region'
