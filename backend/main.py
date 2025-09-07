@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api import auth, users, data_privacy, preferences, frameworks, outputs, learning
+from app.api import auth, users, data_privacy, preferences, frameworks, outputs, learning, company_profiles, progress, notifications, reviews, email_templates, websocket
+from app.routers import ai
 from app.core.database import engine
 from app.models import user
 
@@ -26,6 +27,13 @@ app.include_router(preferences.router, prefix="/users", tags=["Preferences"])
 app.include_router(frameworks.router, prefix="/frameworks", tags=["Frameworks"])
 app.include_router(outputs.router, prefix="/outputs", tags=["Outputs"])
 app.include_router(learning.router, prefix="/learning", tags=["Learning"])
+app.include_router(ai.router, prefix="/ai", tags=["AI Copilot"])
+app.include_router(company_profiles.router, prefix="/company-profiles", tags=["Company Profiles"])
+app.include_router(progress.router, prefix="/users", tags=["User Progress"])
+app.include_router(notifications.router, prefix="/notifications", tags=["Notifications"])
+app.include_router(reviews.router, prefix="/reviews", tags=["Reviews & Learning"])
+app.include_router(email_templates.router, prefix="/email", tags=["Email Templates"])
+app.include_router(websocket.router, prefix="/realtime", tags=["Real-time Notifications"])
 
 @app.get("/")
 def read_root():

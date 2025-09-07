@@ -4,6 +4,8 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.schemas.auth import UserRegister, UserLogin, UserResponse, Token
 from app.services.auth_service import AuthService
+from app.services.login_service import LoginTrackingService
+from app.services.badge_service import BadgeService
 from app.core.security import decode_token
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
@@ -26,6 +28,13 @@ async def login(user_data: UserLogin, response: Response, db: Session = Depends(
     """Login user and set HttpOnly cookies"""
     user = AuthService.authenticate_user(db, user_data)
     tokens = AuthService.create_user_tokens(user)
+    
+    # Track login and award points/badges
+    login_result = LoginTrackingService.record_login(db, user)
+    
+    # Check and award any eligible badges
+    newly_awarded_badges = BadgeService.check_and_award_badges(db, user)
+    all_badges = login_result.get('badges_earned', []) + newly_awarded_badges
     
     # Set HttpOnly cookies
     response.set_cookie(
@@ -53,7 +62,19 @@ async def login(user_data: UserLogin, response: Response, db: Session = Depends(
             subscription_tier=user.subscription_tier,
             created_at=user.created_at,
             is_active=user.is_active
-        )
+        ),
+        "gamification": {
+            "points_awarded": login_result.get('points_awarded', 0),
+            "streak_days": login_result.get('streak_days', 0),
+            "is_first_login": login_result.get('is_first_login', False),
+            "badges_earned": [
+                {
+                    "type": badge.badge_type,
+                    "name": badge.badge_name,
+                    "data": badge.badge_data
+                } for badge in all_badges
+            ]
+        }
     }
 
 @router.post("/logout")
