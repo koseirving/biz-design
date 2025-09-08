@@ -21,13 +21,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">
             Biz Design
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-600">
             AI-powered Business Framework Learning
           </p>
         </div>

@@ -81,12 +81,12 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
 
   return (
     <div className="w-full max-w-md mx-auto">
-      <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+      <div className="bg-white  shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="mb-6 text-center">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+          <h2 className="text-2xl font-bold text-neutral-text-dark  mb-2">
             アカウント作成
           </h2>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-neutral-text-light ">
             ビズデザインに参加しましょう
           </p>
         </div>
@@ -94,13 +94,13 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label 
-              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
+              className="block text-neutral-text-dark  text-sm font-bold mb-2" 
               htmlFor="email"
             >
               メールアドレス
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-neutral-text-dark   leading-tight focus:outline-none focus:shadow-outline ${
                 errors.email ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
               }`}
               id="email"
@@ -117,13 +117,13 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
           
           <div className="mb-4">
             <label 
-              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
+              className="block text-neutral-text-dark  text-sm font-bold mb-2" 
               htmlFor="password"
             >
               パスワード
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-neutral-text-dark   leading-tight focus:outline-none focus:shadow-outline ${
                 errors.password ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
               }`}
               id="password"
@@ -139,16 +139,16 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
             
             {password && (
               <div className="mt-2 text-xs">
-                <div className={`${passwordValidation.minLength ? 'text-green-500' : 'text-red-500'}`}>
+                <div className={`${passwordValidation.minLength ? 'text-status-mountain-meadow' : 'text-red-500'}`}>
                   ✓ 8文字以上
                 </div>
-                <div className={`${passwordValidation.hasDigit ? 'text-green-500' : 'text-red-500'}`}>
+                <div className={`${passwordValidation.hasDigit ? 'text-status-mountain-meadow' : 'text-red-500'}`}>
                   ✓ 数字を含む
                 </div>
-                <div className={`${passwordValidation.hasUpper ? 'text-green-500' : 'text-red-500'}`}>
+                <div className={`${passwordValidation.hasUpper ? 'text-status-mountain-meadow' : 'text-red-500'}`}>
                   ✓ 大文字を含む
                 </div>
-                <div className={`${passwordValidation.hasLower ? 'text-green-500' : 'text-red-500'}`}>
+                <div className={`${passwordValidation.hasLower ? 'text-status-mountain-meadow' : 'text-red-500'}`}>
                   ✓ 小文字を含む
                 </div>
               </div>
@@ -157,13 +157,13 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
           
           <div className="mb-6">
             <label 
-              className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
+              className="block text-neutral-text-dark  text-sm font-bold mb-2" 
               htmlFor="confirmPassword"
             >
               パスワードの確認
             </label>
             <input
-              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-neutral-text-dark   mb-3 leading-tight focus:outline-none focus:shadow-outline ${
                 errors.confirmPassword ? 'border-red-500' : 'border-gray-300 dark:border-gray-600'
               }`}
               id="confirmPassword"
@@ -180,7 +180,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
           
           <div className="flex items-center justify-between">
             <button
-              className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full ${
+              className={`bg-primary-tory-blue hover:bg-primary-tory-blue/90 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition-colors ${
                 loading ? 'opacity-50 cursor-not-allowed' : ''
               }`}
               type="submit"
@@ -192,11 +192,11 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
         </form>
         
         <div className="text-center mt-4">
-          <p className="text-sm text-gray-600 dark:text-gray-400">
+          <p className="text-sm text-neutral-text-light ">
             すでにアカウントをお持ちの方は{' '}
             <button
               type="button"
-              className="text-blue-500 hover:text-blue-700 font-bold"
+              className="text-primary-royal-blue hover:text-primary-tory-blue font-bold transition-colors"
               onClick={() => {/* Navigate to login */}}
             >
               こちらからログイン

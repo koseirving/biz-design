@@ -95,8 +95,8 @@ export default function DashboardPage() {
 
   if (loading || progressLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+      <div className="min-h-screen bg-gradient-to-b from-primary-portage/20 to-neutral-background-light flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-tory-blue"></div>
       </div>
     );
   }
@@ -106,32 +106,32 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-b from-primary-portage/20 to-neutral-background-light">
       {/* Navigation */}
-      <nav className="bg-white dark:bg-gray-800 shadow-lg">
+      <nav className="bg-white  shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <h1 className="text-2xl font-bold text-blue-600 ">
                 Biz Design
               </h1>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="/frameworks" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
+              <Link href="/frameworks" className="text-gray-600  hover:text-blue-600">
                 Frameworks
               </Link>
-              <Link href="/company-profiles" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
+              <Link href="/company-profiles" className="text-gray-600  hover:text-blue-600">
                 Company Profiles
               </Link>
               <div className="flex items-center space-x-2">
                 {progressData && (
-                  <div className="flex items-center space-x-1 px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full text-xs font-semibold">
+                  <div className="flex items-center space-x-1 px-2 py-1 bg-yellow-100  text-yellow-800  rounded-full text-xs font-semibold">
                     <span>⭐</span>
                     <span>{progressData.total_points}</span>
                   </div>
                 )}
-                <span className="text-gray-700 dark:text-gray-300">{user.email}</span>
-                <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-semibold uppercase">
+                <span className="text-gray-700 ">{user.email}</span>
+                <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold uppercase">
                   {user.subscription_tier}
                 </span>
                 <button
@@ -148,13 +148,13 @@ export default function DashboardPage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Welcome Header with Stats */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-8">
+        <div className="bg-white  shadow-lg rounded-lg p-6 mb-8">
           <div className="flex justify-between items-start">
             <div>
-              <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+              <h2 className="text-3xl font-bold text-gray-800  mb-2">
                 おかえりなさい！ 👋
               </h2>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600 ">
                 AI活用ビジネスフレームワーク学習を続けましょう
               </p>
             </div>
@@ -163,18 +163,18 @@ export default function DashboardPage() {
               <div className="flex items-center space-x-6">
                 {progressData.current_streak > 0 && (
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                    <div className="text-2xl font-bold text-orange-600">
                       🔥 {progressData.current_streak}
                     </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">日連続</div>
+                    <div className="text-sm text-gray-500 ">日連続</div>
                   </div>
                 )}
                 
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  <div className="text-2xl font-bold text-blue-600 ">
                     #{progressData.ranking.rank}
                   </div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">
+                  <div className="text-sm text-gray-500 ">
                     上位 {progressData.ranking.percentile}%
                   </div>
                 </div>
@@ -186,32 +186,32 @@ export default function DashboardPage() {
         {/* Quick Stats Cards */}
         {progressData && (
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">
+            <div className="bg-white  shadow-lg rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-yellow-600 mb-2">
                 ⭐ {progressData.total_points}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">合計ポイント</div>
+              <div className="text-sm text-gray-500 ">合計ポイント</div>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+            <div className="bg-white  shadow-lg rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-green-600 mb-2">
                 🏆 {progressData.earned_badges.length}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">獲得バッジ</div>
+              <div className="text-sm text-gray-500 ">獲得バッジ</div>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+            <div className="bg-white  shadow-lg rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-blue-600  mb-2">
                 📋 {progressData.completed_frameworks}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">完了フレームワーク</div>
+              <div className="text-sm text-gray-500 ">完了フレームワーク</div>
             </div>
             
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+            <div className="bg-white  shadow-lg rounded-lg p-6 text-center">
+              <div className="text-3xl font-bold text-purple-600 mb-2">
                 🤖 {progressData.ai_interactions}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">AIチャット</div>
+              <div className="text-sm text-gray-500 ">AIチャット</div>
             </div>
           </div>
         )}
@@ -219,25 +219,25 @@ export default function DashboardPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content - Framework Cards */}
           <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">
+            <div className="bg-white  shadow-lg rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-gray-800  mb-6">
                 学習を始める 🚀
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 p-6 rounded-lg border border-blue-200 dark:border-blue-700">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border border-blue-200">
                   <div className="flex items-center mb-4">
                     <div className="text-3xl mr-3">📊</div>
                     <div>
-                      <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">
+                      <h4 className="text-lg font-semibold text-blue-800">
                         SWOT分析
                       </h4>
-                      <p className="text-sm text-blue-600 dark:text-blue-300">
+                      <p className="text-sm text-blue-600">
                         完了で100ポイント
                       </p>
                     </div>
                   </div>
-                  <p className="text-blue-600 dark:text-blue-300 mb-4 text-sm">
+                  <p className="text-blue-600 mb-4 text-sm">
                     AIガイダンスで強み、弱み、機会、脅威を分析。
                   </p>
                   <Link href="/frameworks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm inline-block">
@@ -245,19 +245,19 @@ export default function DashboardPage() {
                   </Link>
                 </div>
                 
-                <div className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 p-6 rounded-lg border border-green-200 dark:border-green-700">
+                <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border border-green-200">
                   <div className="flex items-center mb-4">
                     <div className="text-3xl mr-3">🗺️</div>
                     <div>
-                      <h4 className="text-lg font-semibold text-green-800 dark:text-green-200">
+                      <h4 className="text-lg font-semibold text-green-800">
                         カスタマージャーニーマップ
                       </h4>
-                      <p className="text-sm text-green-600 dark:text-green-300">
+                      <p className="text-sm text-green-600">
                         完了で100ポイント
                       </p>
                     </div>
                   </div>
-                  <p className="text-green-600 dark:text-green-300 mb-4 text-sm">
+                  <p className="text-green-600 mb-4 text-sm">
                     AIインサイトで顧客のジャーニーをマッピング。
                   </p>
                   <Link href="/frameworks" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm inline-block">
@@ -269,8 +269,8 @@ export default function DashboardPage() {
 
             {/* Badge Progress */}
             {progressData && (
-              <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">
+              <div className="bg-white  shadow-lg rounded-lg p-6">
+                <h3 className="text-xl font-semibold text-gray-800  mb-6">
                   バッジ進捗 🎯
                 </h3>
                 
@@ -279,14 +279,14 @@ export default function DashboardPage() {
                     <div key={badgeType} className="flex items-center justify-between">
                       <div className="flex-1">
                         <div className="flex justify-between items-center mb-1">
-                          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 capitalize">
+                          <span className="text-sm font-medium text-gray-700  capitalize">
                             {badgeType.replace('_', ' ')}
                           </span>
-                          <span className="text-sm text-gray-500 dark:text-gray-400">
+                          <span className="text-sm text-gray-500 ">
                             {progress.current}/{progress.required}
                           </span>
                         </div>
-                        <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                        <div className="w-full bg-gray-200 rounded-full h-2">
                           <div
                             className={`h-2 rounded-full transition-all duration-300 ${getProgressColor(progress.percentage)}`}
                             style={{ width: `${Math.min(progress.percentage, 100)}%` }}
@@ -304,8 +304,8 @@ export default function DashboardPage() {
           <div className="space-y-6">
             {/* Earned Badges */}
             {progressData && progressData.earned_badges.length > 0 && (
-              <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+              <div className="bg-white  shadow-lg rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-gray-800  mb-4">
                   獲得バッジ 🏆
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
@@ -322,7 +322,7 @@ export default function DashboardPage() {
                 </div>
                 {progressData.earned_badges.length > 6 && (
                   <div className="text-center mt-4">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                    <span className="text-sm text-gray-500 ">
                       +{progressData.earned_badges.length - 6} 個のバッジ
                     </span>
                   </div>
@@ -331,21 +331,21 @@ export default function DashboardPage() {
             )}
 
             {/* Quick Actions */}
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+            <div className="bg-white  shadow-lg rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-800  mb-4">
                 クイックアクション ⚡
               </h3>
               <div className="space-y-3">
                 <Link
                   href="/company-profiles"
-                  className="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                  className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   <div className="text-lg mr-3">🏢</div>
                   <div>
-                    <div className="font-medium text-gray-800 dark:text-white text-sm">
+                    <div className="font-medium text-gray-800  text-sm">
                       企業管理
                     </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                    <div className="text-xs text-gray-500 ">
                       企業プロファイルを追加
                     </div>
                   </div>
@@ -353,14 +353,14 @@ export default function DashboardPage() {
                 
                 <Link
                   href="/frameworks"
-                  className="flex items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                  className="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   <div className="text-lg mr-3">📚</div>
                   <div>
-                    <div className="font-medium text-gray-800 dark:text-white text-sm">
+                    <div className="font-medium text-gray-800  text-sm">
                       フレームワーク一覧
                     </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
+                    <div className="text-xs text-gray-500 ">
                       新しいツールを発見
                     </div>
                   </div>
@@ -369,8 +369,8 @@ export default function DashboardPage() {
             </div>
 
             {/* Recent Activity */}
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+            <div className="bg-white  shadow-lg rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-800  mb-4">
                 最近のアクティビティ 📈
               </h3>
               {progressData && progressData.daily_points.length > 0 ? (
@@ -378,10 +378,10 @@ export default function DashboardPage() {
                   {progressData.daily_points.slice(-5).reverse().map((day, index) => (
                     day.points > 0 && (
                       <div key={index} className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600 dark:text-gray-400">
+                        <span className="text-sm text-gray-600 ">
                           {new Date(day.date).toLocaleDateString()}
                         </span>
-                        <span className="text-sm font-semibold text-yellow-600 dark:text-yellow-400">
+                        <span className="text-sm font-semibold text-yellow-600">
                           +{day.points} pts
                         </span>
                       </div>
@@ -389,7 +389,7 @@ export default function DashboardPage() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center text-gray-500 dark:text-gray-400 py-4">
+                <div className="text-center text-gray-500  py-4">
                   <div className="text-3xl mb-2">🌟</div>
                   <p className="text-sm">学習を始めてアクティビティを確認しましょう！</p>
                 </div>

@@ -121,11 +121,11 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
         );
       default:
         return (
-          <div key={output.id} className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-6">
-            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
+          <div key={output.id} className="bg-white shadow-lg rounded-lg p-6 mb-6">
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
               アウトプット結果
             </h3>
-            <pre className="bg-gray-100 dark:bg-gray-700 p-4 rounded text-sm overflow-auto">
+            <pre className="bg-gray-100 p-4 rounded text-sm overflow-auto">
               {JSON.stringify(output.data, null, 2)}
             </pre>
           </div>
@@ -135,7 +135,7 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
 
   if (authLoading || loading || contentLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
       </div>
     );
@@ -147,10 +147,10 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-red-600 mb-4">エラー</h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-4">{error}</p>
+          <p className="text-gray-600 mb-4">{error}</p>
           <Link href="/frameworks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             フレームワーク一覧に戻る
           </Link>
@@ -161,9 +161,9 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
 
   if (!framework) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-600 dark:text-gray-400 mb-4">フレームワークが見つかりません</h2>
+          <h2 className="text-2xl font-bold text-gray-600 mb-4">フレームワークが見つかりません</h2>
           <Link href="/frameworks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             フレームワーク一覧に戻る
           </Link>
@@ -173,22 +173,22 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
       {/* Navigation */}
-      <nav className="bg-white dark:bg-gray-800 shadow-lg">
+      <nav className="bg-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <Link href="/dashboard" className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <Link href="/dashboard" className="text-2xl font-bold text-blue-600">
                 Biz Design
               </Link>
             </div>
             <div className="flex items-center space-x-4">
-              <Link href="/frameworks" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
+              <Link href="/frameworks" className="text-gray-600 hover:text-blue-600">
                 フレームワーク一覧
               </Link>
-              <span className="text-gray-700 dark:text-gray-300">{user.email}</span>
-              <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-semibold uppercase">
+              <span className="text-gray-700">{user.email}</span>
+              <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-semibold uppercase">
                 {user.subscription_tier}
               </span>
             </div>
@@ -208,25 +208,25 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
               {framework.name}
             </Link>
             <span className="mx-2 text-gray-500">/</span>
-            <span className="text-gray-600 dark:text-gray-400">学習開始</span>
+            <span className="text-gray-600">学習開始</span>
           </nav>
         </div>
 
         {/* Header */}
-        <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-8">
+        <div className="bg-white shadow-lg rounded-lg p-6 mb-8">
           <div className="flex justify-between items-start">
             <div>
-              <h1 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+              <h1 className="text-2xl font-bold text-gray-800 mb-2">
                 {framework.name} - AI分析セッション
               </h1>
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-gray-600">
                 AIコパイロットと対話しながら{framework.name}を実践してみましょう
               </p>
             </div>
             
             {framework.is_premium && user.subscription_tier !== 'premium' && (
-              <div className="bg-yellow-50 dark:bg-yellow-900 border border-yellow-200 dark:border-yellow-700 rounded-lg p-4">
-                <p className="text-yellow-800 dark:text-yellow-200 text-sm">
+              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                <p className="text-yellow-800 text-sm">
                   このフレームワークはプレミアム限定です
                 </p>
               </div>
@@ -249,14 +249,14 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
 
           {/* Results Panel */}
           <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg">
+            <div className="bg-white shadow-lg rounded-lg">
               {/* Tab Headers */}
-              <div className="flex border-b border-gray-200 dark:border-gray-700">
+              <div className="flex border-b border-gray-200">
                 <button
                   onClick={() => setActiveTab('chat')}
                   className={`px-6 py-3 font-medium text-sm ${activeTab === 'chat'
-                    ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                    ? 'border-b-2 border-blue-500 text-blue-600
+                    : 'text-gray-500 hover:text-gray-700
                   }`}
                 >
                   ガイド
@@ -264,8 +264,8 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
                 <button
                   onClick={() => setActiveTab('output')}
                   className={`px-6 py-3 font-medium text-sm ${activeTab === 'output'
-                    ? 'border-b-2 border-blue-500 text-blue-600 dark:text-blue-400'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+                    ? 'border-b-2 border-blue-500 text-blue-600
+                    : 'text-gray-500 hover:text-gray-700
                   }`}
                 >
                   アウトプット ({generatedOutputs.length})
@@ -276,15 +276,15 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
               <div className="p-6 max-h-96 lg:max-h-screen overflow-y-auto">
                 {activeTab === 'chat' && (
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                    <h3 className="text-lg font-semibold text-gray-800">
                       {framework.name}を始める前に
                     </h3>
                     
-                    <div className="bg-blue-50 dark:bg-blue-900 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
-                      <h4 className="font-medium text-blue-800 dark:text-blue-200 mb-2">
+                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                      <h4 className="font-medium text-blue-800 mb-2">
                         AIコパイロットの使い方
                       </h4>
-                      <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                      <ul className="text-sm text-blue-700 space-y-1">
                         <li>• 質問に答えながら分析を進めます</li>
                         <li>• いつでも詳細を聞き直すことができます</li>
                         <li>• 分析が完了すると自動で結果が表示されます</li>
@@ -293,15 +293,15 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
 
                     {framework.micro_content?.overview && (
                       <div>
-                        <h4 className="font-medium text-gray-800 dark:text-white mb-2">フレームワーク概要</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-400">
+                        <h4 className="font-medium text-gray-800 mb-2">フレームワーク概要</h4>
+                        <p className="text-sm text-gray-600">
                           {framework.micro_content.overview}
                         </p>
                       </div>
                     )}
 
                     <div className="text-center">
-                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                      <p className="text-sm text-gray-500">
                         左のチャットパネルで「始めましょう」と入力してスタートしてください
                       </p>
                     </div>
@@ -312,15 +312,15 @@ export default function FrameworkStartPage({ params }: { params: { id: string } 
                   <div>
                     {generatedOutputs.length === 0 ? (
                       <div className="text-center py-12">
-                        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
+                        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
                           <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                           </svg>
                         </div>
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <p className="text-gray-500">
                           まだアウトプットが生成されていません
                         </p>
-                        <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">
+                        <p className="text-sm text-gray-400 mt-1">
                           AIとの対話を通じて分析を完了すると、ここに結果が表示されます
                         </p>
                       </div>

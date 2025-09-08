@@ -43,22 +43,22 @@ export default function SwotOutputDisplay({
 
   const getQuadrantColorClasses = (color: string) => {
     const colorMap = {
-      green: 'bg-green-50 border-green-200 dark:bg-green-900 dark:border-green-700',
-      red: 'bg-red-50 border-red-200 dark:bg-red-900 dark:border-red-700',
-      blue: 'bg-blue-50 border-blue-200 dark:bg-blue-900 dark:border-blue-700',
-      orange: 'bg-orange-50 border-orange-200 dark:bg-orange-900 dark:border-orange-700'
+      green: 'bg-green-50 border-green-200
+      red: 'bg-red-50 border-red-200
+      blue: 'bg-blue-50 border-blue-200
+      orange: 'bg-orange-50 border-orange-200
     };
-    return colorMap[color as keyof typeof colorMap] || 'bg-gray-50 border-gray-200 dark:bg-gray-900 dark:border-gray-700';
+    return colorMap[color as keyof typeof colorMap] || 'bg-gray-50 border-gray-200
   };
 
   const getTextColorClasses = (color: string) => {
     const colorMap = {
-      green: 'text-green-800 dark:text-green-200',
-      red: 'text-red-800 dark:text-red-200', 
-      blue: 'text-blue-800 dark:text-blue-200',
-      orange: 'text-orange-800 dark:text-orange-200'
+      green: 'text-green-800
+      red: 'text-red-800 
+      blue: 'text-blue-800
+      orange: 'text-orange-800
     };
-    return colorMap[color as keyof typeof colorMap] || 'text-gray-800 dark:text-gray-200';
+    return colorMap[color as keyof typeof colorMap] || 'text-gray-800
   };
 
   const handleExport = async () => {
@@ -93,7 +93,7 @@ export default function SwotOutputDisplay({
           ))
         ) : (
           <div className={`p-3 rounded border-2 border-dashed ${quadrant.color === 'green' ? 'border-green-300' : quadrant.color === 'red' ? 'border-red-300' : quadrant.color === 'blue' ? 'border-blue-300' : 'border-orange-300'} text-center`}>
-            <p className="text-sm text-gray-500 dark:text-gray-400">データがありません</p>
+            <p className="text-sm text-gray-500">データがありません</p>
           </div>
         )}
       </div>
@@ -107,16 +107,16 @@ export default function SwotOutputDisplay({
   );
 
   return (
-    <div className={`bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden ${className}`}>
+    <div className={`bg-white shadow-lg rounded-lg overflow-hidden ${className}`}>
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+      <div className="px-6 py-4 border-b border-gray-200">
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-xl font-bold text-gray-800 dark:text-white">
+            <h2 className="text-xl font-bold text-gray-800">
               {title || 'SWOT分析結果'}
             </h2>
             {swotData.company_name && (
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-sm text-gray-600">
                 対象: {swotData.company_name}
               </p>
             )}
@@ -127,7 +127,7 @@ export default function SwotOutputDisplay({
               <select
                 value={exportFormat}
                 onChange={(e) => setExportFormat(e.target.value as any)}
-                className="text-sm border border-gray-300 dark:border-gray-600 rounded px-2 py-1 dark:bg-gray-700 dark:text-white"
+                className="text-sm border border-gray-300 rounded px-2 py-1"
               >
                 <option value="png">PNG画像</option>
                 <option value="pdf">PDF</option>
@@ -148,17 +148,17 @@ export default function SwotOutputDisplay({
       <div className="p-6">
         {/* Axis Labels */}
         <div className="mb-4 text-center">
-          <div className="inline-flex items-center space-x-8 text-sm font-medium text-gray-600 dark:text-gray-400">
+          <div className="inline-flex items-center space-x-8 text-sm font-medium text-gray-600">
             <div className="flex flex-col items-center">
               <span className="mb-2">内部環境</span>
-              <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+              <div className="w-px h-4 bg-gray-300"></div>
             </div>
             <div className="text-center">
               <span>SWOT分析マトリクス</span>
             </div>
             <div className="flex flex-col items-center">
               <span className="mb-2">外部環境</span>
-              <div className="w-px h-4 bg-gray-300 dark:bg-gray-600"></div>
+              <div className="w-px h-4 bg-gray-300"></div>
             </div>
           </div>
         </div>
@@ -167,14 +167,14 @@ export default function SwotOutputDisplay({
         <div className="grid grid-cols-2 gap-6 mb-6">
           {/* Top Row */}
           <div className="space-y-2">
-            <div className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+            <div className="text-center text-sm font-medium text-gray-600 mb-2">
               プラス要因
             </div>
             {renderQuadrant(swotData.matrix_layout.top_left, swotData.quadrants[swotData.matrix_layout.top_left as keyof typeof swotData.quadrants])}
           </div>
           
           <div className="space-y-2">
-            <div className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+            <div className="text-center text-sm font-medium text-gray-600 mb-2">
               プラス要因
             </div>
             {renderQuadrant(swotData.matrix_layout.top_right, swotData.quadrants[swotData.matrix_layout.top_right as keyof typeof swotData.quadrants])}
@@ -182,14 +182,14 @@ export default function SwotOutputDisplay({
 
           {/* Bottom Row */}
           <div className="space-y-2">
-            <div className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+            <div className="text-center text-sm font-medium text-gray-600 mb-2">
               マイナス要因
             </div>
             {renderQuadrant(swotData.matrix_layout.bottom_left, swotData.quadrants[swotData.matrix_layout.bottom_left as keyof typeof swotData.quadrants])}
           </div>
           
           <div className="space-y-2">
-            <div className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">
+            <div className="text-center text-sm font-medium text-gray-600 mb-2">
               マイナス要因
             </div>
             {renderQuadrant(swotData.matrix_layout.bottom_right, swotData.quadrants[swotData.matrix_layout.bottom_right as keyof typeof swotData.quadrants])}
@@ -197,14 +197,14 @@ export default function SwotOutputDisplay({
         </div>
 
         {/* Summary Statistics */}
-        <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
+        <div className="border-t border-gray-200 pt-4">
           <div className="grid grid-cols-4 gap-4 text-center">
             {Object.entries(swotData.quadrants).map(([key, quadrant]) => (
-              <div key={key} className="p-3 bg-gray-50 dark:bg-gray-700 rounded">
+              <div key={key} className="p-3 bg-gray-50 rounded">
                 <div className={`text-lg font-bold ${getTextColorClasses(quadrant.color)}`}>
                   {quadrant.items?.length || 0}
                 </div>
-                <div className="text-xs text-gray-500 dark:text-gray-400 capitalize">
+                <div className="text-xs text-gray-500 capitalize">
                   {key}
                 </div>
               </div>
@@ -213,11 +213,11 @@ export default function SwotOutputDisplay({
         </div>
 
         {/* Strategic Insights */}
-        <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-          <h4 className="font-semibold text-gray-800 dark:text-white mb-2">
+        <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+          <h4 className="font-semibold text-gray-800 mb-2">
             戦略的示唆
           </h4>
-          <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+          <div className="space-y-2 text-sm text-gray-600">
             <p>• SO戦略: 強みを活かして機会を最大化</p>
             <p>• ST戦略: 強みを使って脅威に対抗</p>
             <p>• WO戦略: 弱みを改善して機会を活用</p>

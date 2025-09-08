@@ -3,21 +3,42 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* Primary Colors */
+  --color-primary-tory-blue: #1041aa;
+  --color-primary-royal-blue: #346be3;
+  --color-primary-portage: #89a5ee;
+  
+  /* Accent Colors */
+  --color-accent-corn: #e0b700;
+  --color-accent-wewak: #f1a5aa;
+  
+  /* Status Colors */
+  --color-status-salem: #0d7554;
+  --color-status-mountain-meadow: #11a383;
+  
+  /* Neutral Colors */
+  --color-neutral-text-dark: #2d3748;
+  --color-neutral-text-light: #718096;
+  --color-neutral-background-light: #f8f9fa;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  --color-primary-tory-blue: #1041aa;
+  --color-primary-royal-blue: #346be3;
+  --color-primary-portage: #89a5ee;
+  --color-accent-corn: #e0b700;
+  --color-accent-wewak: #f1a5aa;
+  --color-status-salem: #0d7554;
+  --color-status-mountain-meadow: #11a383;
+  --color-neutral-text-dark: #2d3748;
+  --color-neutral-text-light: #718096;
+  --color-neutral-background-light: #f8f9fa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
