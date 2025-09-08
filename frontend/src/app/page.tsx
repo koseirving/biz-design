@@ -35,7 +35,7 @@ export default function Home() {
         <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Transform your business thinking with AI-guided framework learning. Master SWOT analysis, user journey mapping, and more with intelligent guidance.
         </p>
-        
+
         {!user && (
           <div className="space-y-4">
             <div className="space-x-4">
@@ -43,50 +43,50 @@ export default function Home() {
                 href="/auth/register"
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-200"
               >
-                Get Started Free
+                無料で始める
               </Link>
               <Link
                 href="/auth/login"
                 className="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-200"
               >
-                Sign In
+                ログイン
               </Link>
             </div>
             <p className="text-sm text-gray-500 dark:text-gray-400">
-              Start with our free plan. No credit card required.
+              無料プランで始めましょう。クレジットカードは不要です。
             </p>
           </div>
         )}
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 max-w-4xl">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             <div className="text-3xl mb-4">🧠</div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">AI-Guided Learning</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">AIガイド学習</h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Interactive AI conversations help you apply business frameworks to real scenarios.
+              インタラクティブなAI対話が、実際のシナリオにビジネスフレームワークを適用するお手伝いをします。
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             <div className="text-3xl mb-4">📊</div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Visual Outputs</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">ビジュアルアウトプット</h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Generate professional business analysis documents and visualizations.
+              プロフェッショナルなビジネス分析ドキュメントと可視化を生成。
             </p>
           </div>
-          
+
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             <div className="text-3xl mb-4">🎯</div>
-            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">Practical Focus</h3>
+            <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-white">実践的アプローチ</h3>
             <p className="text-gray-600 dark:text-gray-400">
-              Move beyond theory to create actionable business insights and strategies.
+              理論を超えて、実行可能なビジネスインサイトと戦略を作成。
             </p>
           </div>
         </div>
       </main>
-      
+
       <footer className="absolute bottom-4 text-sm text-gray-500">
-        Biz Design v2.0.0 - Module 2: Authentication Complete
+        Biz Design v2.0.0 - モジュール2: 認証完了
       </footer>
     </div>
   );

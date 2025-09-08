@@ -39,30 +39,30 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
     const newErrors: { email?: string; password?: string; confirmPassword?: string } = {};
     
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'メールアドレスが必要です';
     } else if (!validateEmail(email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = '有効なメールアドレスを入力してください';
     }
     
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'パスワードが必要です';
     } else {
       const passwordValidation = validatePassword(password);
       if (!passwordValidation.minLength) {
-        newErrors.password = 'Password must be at least 8 characters long';
+        newErrors.password = 'パスワードは8文字以上である必要があります';
       } else if (!passwordValidation.hasDigit) {
-        newErrors.password = 'Password must contain at least one digit';
+        newErrors.password = 'パスワードには少なくとも1つの数字を含む必要があります';
       } else if (!passwordValidation.hasUpper) {
-        newErrors.password = 'Password must contain at least one uppercase letter';
+        newErrors.password = 'パスワードには少なくとも1つの大文字を含む必要があります';
       } else if (!passwordValidation.hasLower) {
-        newErrors.password = 'Password must contain at least one lowercase letter';
+        newErrors.password = 'パスワードには少なくとも1つの小文字を含む必要があります';
       }
     }
     
     if (!confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
+      newErrors.confirmPassword = 'パスワードを確認してください';
     } else if (password !== confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
+      newErrors.confirmPassword = 'パスワードが一致しません';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -84,10 +84,10 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-            Create Account
+            アカウント作成
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
-            Join Biz Design today
+            ビズデザインに参加しましょう
           </p>
         </div>
         
@@ -97,7 +97,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
               className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
               htmlFor="email"
             >
-              Email
+              メールアドレス
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -105,7 +105,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
               }`}
               id="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="メールアドレスを入力"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
@@ -120,7 +120,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
               className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
               htmlFor="password"
             >
-              Password
+              パスワード
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -128,7 +128,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
               }`}
               id="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="パスワードを入力"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={loading}
@@ -140,16 +140,16 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
             {password && (
               <div className="mt-2 text-xs">
                 <div className={`${passwordValidation.minLength ? 'text-green-500' : 'text-red-500'}`}>
-                  ✓ At least 8 characters
+                  ✓ 8文字以上
                 </div>
                 <div className={`${passwordValidation.hasDigit ? 'text-green-500' : 'text-red-500'}`}>
-                  ✓ Contains a digit
+                  ✓ 数字を含む
                 </div>
                 <div className={`${passwordValidation.hasUpper ? 'text-green-500' : 'text-red-500'}`}>
-                  ✓ Contains an uppercase letter
+                  ✓ 大文字を含む
                 </div>
                 <div className={`${passwordValidation.hasLower ? 'text-green-500' : 'text-red-500'}`}>
-                  ✓ Contains a lowercase letter
+                  ✓ 小文字を含む
                 </div>
               </div>
             )}
@@ -160,7 +160,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
               className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
               htmlFor="confirmPassword"
             >
-              Confirm Password
+              パスワードの確認
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
@@ -168,7 +168,7 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
               }`}
               id="confirmPassword"
               type="password"
-              placeholder="Confirm your password"
+              placeholder="パスワードを再入力"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               disabled={loading}
@@ -193,13 +193,13 @@ export default function RegisterForm({ onSubmit, loading = false }: RegisterForm
         
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Already have an account?{' '}
+            すでにアカウントをお持ちの方は{' '}
             <button
               type="button"
               className="text-blue-500 hover:text-blue-700 font-bold"
               onClick={() => {/* Navigate to login */}}
             >
-              Sign in here
+              こちらからログイン
             </button>
           </p>
         </div>

@@ -132,10 +132,10 @@ export default function FrameworksPage() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-            Business Frameworks
+            ビジネスフレームワーク
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            Discover and master essential business frameworks with AI guidance
+            AIガイダンスで重要なビジネスフレームワークを発見し、マスターする
           </p>
         </div>
 
@@ -147,7 +147,7 @@ export default function FrameworksPage() {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Search frameworks..."
+                  placeholder="フレームワークを検索..."
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
@@ -167,7 +167,7 @@ export default function FrameworksPage() {
               onChange={(e) => setSelectedCategory(e.target.value || null)}
               className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             >
-              <option value="">All Categories</option>
+              <option value="">全カテゴリー</option>
               {categories.map(category => (
                 <option key={category} value={category}>
                   {category.charAt(0).toUpperCase() + category.slice(1)}
@@ -181,7 +181,7 @@ export default function FrameworksPage() {
               onChange={(e) => setSelectedDifficulty(e.target.value || null)}
               className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
             >
-              <option value="">All Levels</option>
+              <option value="">全レベル</option>
               {difficultyLevels.map(level => (
                 <option key={level} value={level}>
                   {level.charAt(0).toUpperCase() + level.slice(1)}
@@ -203,7 +203,7 @@ export default function FrameworksPage() {
         {frameworks.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500 dark:text-gray-400 text-lg">
-              No frameworks found. Try adjusting your search criteria.
+              フレームワークが見つかりません。検索条件を調整してください。
             </p>
           </div>
         ) : (
@@ -221,7 +221,7 @@ export default function FrameworksPage() {
                     </h3>
                     {framework.is_premium && (
                       <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded-full">
-                        Premium
+                        プレミアム
                       </span>
                     )}
                   </div>
@@ -246,7 +246,7 @@ export default function FrameworksPage() {
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                    {framework.estimated_duration} minutes
+                    {framework.estimated_duration} 分
                   </div>
 
                   {/* Action Button */}
@@ -262,7 +262,7 @@ export default function FrameworksPage() {
                         disabled
                         className="bg-gray-300 text-gray-500 font-bold py-2 px-4 rounded cursor-not-allowed"
                       >
-                        Premium
+                        プレミアム
                       </button>
                     ) : (
                       <Link

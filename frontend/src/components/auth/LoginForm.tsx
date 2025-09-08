@@ -25,13 +25,13 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
     const newErrors: { email?: string; password?: string } = {};
     
     if (!email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'メールアドレスが必要です';
     } else if (!validateEmail(email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = '有効なメールアドレスを入力してください';
     }
     
     if (!password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'パスワードが必要です';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -51,10 +51,10 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
         <div className="mb-6 text-center">
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
-            Welcome Back
+            おかえりなさい
           </h2>
           <p className="text-gray-600 dark:text-gray-400">
-            Sign in to your account
+            アカウントにログイン
           </p>
         </div>
         
@@ -64,7 +64,7 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
               className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
               htmlFor="email"
             >
-              Email
+              メールアドレス
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -72,7 +72,7 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
               }`}
               id="email"
               type="email"
-              placeholder="Enter your email"
+              placeholder="メールアドレスを入力"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={loading}
@@ -87,7 +87,7 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
               className="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" 
               htmlFor="password"
             >
-              Password
+              パスワード
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 dark:bg-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline ${
@@ -95,7 +95,7 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
               }`}
               id="password"
               type="password"
-              placeholder="Enter your password"
+              placeholder="パスワードを入力"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={loading}
@@ -120,13 +120,13 @@ export default function LoginForm({ onSubmit, loading = false }: LoginFormProps)
         
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Don&apos;t have an account?{' '}
+            アカウントをお持ちでない方は{' '}
             <button
               type="button"
               className="text-blue-500 hover:text-blue-700 font-bold"
               onClick={() => {/* Navigate to register */}}
             >
-              Sign up here
+              こちらから登録
             </button>
           </p>
         </div>

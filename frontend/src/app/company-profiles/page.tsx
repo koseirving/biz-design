@@ -110,10 +110,10 @@ export default function CompanyProfilesPage() {
             </div>
             <div className="flex items-center space-x-4">
               <Link href="/dashboard" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
-                Dashboard
+                ダッシュボード
               </Link>
               <Link href="/frameworks" className="text-gray-600 dark:text-gray-400 hover:text-blue-600">
-                Frameworks
+                フレームワーク
               </Link>
               <span className="text-gray-700 dark:text-gray-300">{user.email}</span>
               <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-xs font-semibold uppercase">
@@ -128,16 +128,16 @@ export default function CompanyProfilesPage() {
         {/* Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Company Profiles</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">企業プロファイル</h1>
             <p className="text-gray-600 dark:text-gray-400 mt-2">
-              Manage your company and competitor profiles for comprehensive analysis
+              自社と競合他社のプロファイルを管理し、包括的な分析を実施
             </p>
           </div>
           <button
             onClick={() => router.push('/company-profiles/create')}
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg focus:outline-none focus:shadow-outline"
           >
-            Add Company Profile
+            企業プロファイルを追加
           </button>
         </div>
 
@@ -156,16 +156,16 @@ export default function CompanyProfilesPage() {
               </svg>
             </div>
             <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
-              No Company Profiles Yet
+              まだ企業プロファイルがありません
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Create your first company profile to start analyzing your business landscape
+              最初の企業プロファイルを作成して、ビジネス環境の分析を開始しましょう
             </p>
             <button
               onClick={() => router.push('/company-profiles/create')}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
-              Create First Profile
+              最初のプロファイルを作成
             </button>
           </div>
         ) : (
@@ -179,7 +179,7 @@ export default function CompanyProfilesPage() {
                     </h3>
                     <div className="flex items-center gap-2 mb-2">
                       <span className={`px-2 py-1 text-xs rounded-full ${getProfileTypeColor(profile.profile_data?.type || 'unknown')}`}>
-                        {profile.profile_data?.type === 'own' ? 'Own Company' : 'Competitor'}
+                        {profile.profile_data?.type === 'own' ? '自社' : '競合他社'}
                       </span>
                       {profile.profile_data?.industry && (
                         <span className="px-2 py-1 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 text-xs rounded-full">

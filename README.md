@@ -1,169 +1,169 @@
-# Biz Design - AI-powered Business Framework Learning Platform
+# Biz Design - AI活用型ビジネスフレームワーク学習プラットフォーム
 
-## Overview
+## 概要
 
-Biz Design is a comprehensive platform that combines AI-powered learning with business framework education. The platform provides interactive learning experiences through SWOT analysis, user journey mapping, and other business methodologies enhanced by Gemini AI.
+Biz Designは、AI活用型学習とビジネスフレームワーク教育を組み合わせた総合プラットフォームです。SWOT分析、カスタマージャーニーマッピング、その他のビジネス手法をGemini AIで強化し、インタラクティブな学習体験を提供します。
 
-## Architecture
+## アーキテクチャ
 
-- **Frontend**: Next.js 15 with TypeScript, TailwindCSS
-- **Backend**: FastAPI with Python 3.11
-- **Database**: PostgreSQL with SQLAlchemy
-- **Cache/Queue**: Redis
+- **フロントエンド**: Next.js 15（TypeScript、TailwindCSS）
+- **バックエンド**: FastAPI（Python 3.11）
+- **データベース**: PostgreSQL（SQLAlchemy）
+- **キャッシュ/キュー**: Redis
 - **AI**: Google Gemini API
-- **Infrastructure**: Google Cloud Platform (Cloud Run, Cloud SQL, Memorystore)
+- **インフラ**: Google Cloud Platform（Cloud Run、Cloud SQL、Memorystore）
 
-## Project Structure
+## プロジェクト構成
 
 ```
 biz-design-repo/
-├── frontend/          # Next.js application
-├── backend/           # FastAPI application
-├── spec/              # Project specifications
+├── frontend/          # Next.jsアプリケーション
+├── backend/           # FastAPIアプリケーション
+├── spec/              # プロジェクト仕様書
 └── README.md
 ```
 
-## Features Implemented
+## 実装済み機能
 
-### ✅ Module 1: Project Setup and Foundation
-- GCP project initialization
-- Git repository setup
-- Hello World applications
-- Basic CI/CD pipeline
+### ✅ モジュール1: プロジェクトセットアップと基盤構築
+- GCPプロジェクトの初期化
+- Gitリポジトリのセットアップ
+- Hello Worldアプリケーション
+- 基本的なCI/CDパイプライン
 
-### ✅ Module 2: Database and User Authentication
-- PostgreSQL database setup
-- User registration/login with JWT
-- Redis caching
-- Data privacy features (GDPR compliance)
+### ✅ モジュール2: データベースとユーザー認証
+- PostgreSQLデータベースのセットアップ
+- JWT認証によるユーザー登録/ログイン
+- Redisキャッシング
+- データプライバシー機能（GDPR準拠）
 
-### ✅ Module 3: Core Content and Version Management
-- Business framework content management
-- Version control for outputs
-- Auto-save functionality
-- Learning session tracking
+### ✅ モジュール3: コアコンテンツとバージョン管理
+- ビジネスフレームワークコンテンツ管理
+- アウトプットのバージョン管理
+- 自動保存機能
+- 学習セッション追跡
 
-### ✅ Module 4: AI Copilot (Gemini Integration)
-- Gemini API integration
-- Function calling for analysis
-- Interactive AI chat interface
-- Output visualization
+### ✅ モジュール4: AIコパイロット（Gemini連携）
+- Gemini API統合
+- 分析用ファンクション呼び出し
+- インタラクティブAIチャットインターフェース
+- アウトプット可視化
 
-### ✅ Module 5: Premium Features and Gamification
-- Company profile management
-- Points and badge system
-- Progress tracking
-- AI-powered evaluation
+### ✅ モジュール5: プレミアム機能とゲーミフィケーション
+- 企業プロファイル管理
+- ポイントとバッジシステム
+- 進捗追跡
+- AI評価機能
 
-### ✅ Module 7: Notification System and Ebbinghaus Review
-- Redis-based notification queues
-- Email notifications with SendGrid
-- Spaced repetition learning system
-- WebSocket real-time notifications
+### ✅ モジュール7: 通知システムとエビングハウス復習機能
+- Redisベースの通知キュー
+- SendGridによるメール通知
+- 間隔反復学習システム
+- WebSocketリアルタイム通知
 
-### ✅ Module 8: Frontend New Components
-- Version history management
-- Badge collection display
-- Notification center
-- Export functionality
+### ✅ モジュール8: フロントエンド新規コンポーネント
+- バージョン履歴管理
+- バッジコレクション表示
+- 通知センター
+- エクスポート機能
 
-### ✅ Module 9: Security and Privacy
-- **GDPR Compliance**: Full consent management, data minimization
-- **Data Export**: Multi-format export (JSON/CSV/XML/PDF/ZIP)
-- **Account Deletion**: Staged deletion process (soft → anonymization → hard delete)
-- **Rate Limiting**: Advanced multi-strategy rate limiting
-- **Encryption**: AES-256-GCM, Fernet, RSA-OAEP, hybrid encryption
-- **Audit Logging**: Comprehensive security event tracking
-- **Accessibility**: WCAG 2.1 Level AA compliance
+### ✅ モジュール9: セキュリティとプライバシー
+- **GDPR準拠**: 完全な同意管理、データ最小化
+- **データエクスポート**: マルチフォーマット対応（JSON/CSV/XML/PDF/ZIP）
+- **アカウント削除**: 段階的削除プロセス（ソフト削除 → 匿名化 → 完全削除）
+- **レート制限**: 高度なマルチ戦略レート制限
+- **暗号化**: AES-256-GCM、Fernet、RSA-OAEP、ハイブリッド暗号化
+- **監査ログ**: 包括的なセキュリティイベント追跡
+- **アクセシビリティ**: WCAG 2.1レベルAA準拠
 
-## Security Features
+## セキュリティ機能
 
-### Data Protection
-- **Encryption at Rest**: AES-256-GCM encryption for sensitive data
-- **Encryption in Transit**: TLS 1.3 for all communications
-- **Field-level Encryption**: Selective encryption of sensitive fields
-- **Key Management**: Integration with GCP Secret Manager
+### データ保護
+- **保存時の暗号化**: 機密データのAES-256-GCM暗号化
+- **通信時の暗号化**: すべての通信にTLS 1.3を使用
+- **フィールドレベル暗号化**: 機密フィールドの選択的暗号化
+- **キー管理**: GCP Secret Managerとの統合
 
-### Access Control
-- **Rate Limiting**: Sliding window, fixed window, and token bucket strategies
-- **Subscription-based Limits**: Different limits for free/premium users
-- **API Security**: Comprehensive input validation and sanitization
+### アクセス制御
+- **レート制限**: スライディングウィンドウ、固定ウィンドウ、トークンバケット戦略
+- **サブスクリプション別制限**: 無料/プレミアムユーザーで異なる制限
+- **APIセキュリティ**: 包括的な入力検証とサニタイゼーション
 
-### Audit & Compliance
-- **Security Audit Logs**: 180-day retention with integrity verification
-- **GDPR Compliance**: Full data subject rights implementation
-- **Incident Reporting**: Automated security incident tracking
-- **Real-time Monitoring**: Proactive security alerting
+### 監査とコンプライアンス
+- **セキュリティ監査ログ**: 180日間保持、整合性検証付き
+- **GDPRコンプライアンス**: データ主体の権利を完全実装
+- **インシデント報告**: 自動セキュリティインシデント追跡
+- **リアルタイム監視**: プロアクティブなセキュリティアラート
 
-### Accessibility
-- **WCAG 2.1 AA**: Full compliance with web accessibility standards
-- **Keyboard Navigation**: Complete keyboard accessibility
-- **Screen Reader Support**: Comprehensive assistive technology support
-- **Focus Management**: Proper focus trapping and indicators
+### アクセシビリティ
+- **WCAG 2.1 AA**: ウェブアクセシビリティ標準に完全準拠
+- **キーボードナビゲーション**: 完全なキーボードアクセシビリティ
+- **スクリーンリーダーサポート**: 包括的な支援技術サポート
+- **フォーカス管理**: 適切なフォーカストラップとインジケーター
 
-## Getting Started
+## はじめに
 
-### Prerequisites
-- Node.js 18+
-- Python 3.11+
-- PostgreSQL 14+
-- Redis 6+
-- Google Cloud SDK (for deployment)
+### 前提条件
+- Node.js 18以上
+- Python 3.11以上
+- PostgreSQL 14以上
+- Redis 6以上
+- Google Cloud SDK（デプロイ用）
 
-### Development Setup
+### 開発環境のセットアップ
 
-#### Backend Setup
+#### バックエンドセットアップ
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windowsの場合: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Set up environment variables
+# 環境変数の設定
 cp .env.example .env
-# Edit .env with your configuration
+# .envを編集して設定を行う
 
-# Run database migrations
+# データベースマイグレーションの実行
 alembic upgrade head
 
-# Start the server
+# サーバーの起動
 uvicorn main:app --reload
 ```
 
-#### Frontend Setup
+#### フロントエンドセットアップ
 ```bash
 cd frontend
 npm install
 
-# Set up environment variables
+# 環境変数の設定
 cp .env.example .env.local
-# Edit .env.local with your configuration
+# .env.localを編集して設定を行う
 
-# Start the development server
+# 開発サーバーの起動
 npm run dev
 ```
 
-### Testing
+### テスト
 
-#### Backend Testing
+#### バックエンドテスト
 ```bash
 cd backend
 pytest tests/ -v
 ```
 
-#### Frontend Testing
+#### フロントエンドテスト
 ```bash
 cd frontend
-# Unit tests
+# ユニットテスト
 npm test
 
-# E2E tests
+# E2Eテスト
 npm run test:e2e
 ```
 
-### Environment Variables
+### 環境変数
 
-#### Backend (.env)
+#### バックエンド (.env)
 ```
 DATABASE_URL=postgresql://user:pass@localhost/bizdesign
 REDIS_URL=redis://localhost:6379
@@ -173,98 +173,98 @@ ENCRYPTION_MASTER_KEY=your_encryption_key
 SENDGRID_API_KEY=your_sendgrid_key
 ```
 
-#### Frontend (.env.local)
+#### フロントエンド (.env.local)
 ```
 NEXT_PUBLIC_API_URL=http://localhost:8000
 NEXT_PUBLIC_APP_URL=http://localhost:3000
 ```
 
-## API Documentation
+## APIドキュメント
 
-When running the backend server, visit:
-- **OpenAPI Docs**: http://localhost:8000/docs
+バックエンドサーバー実行時に以下を参照:
+- **OpenAPI ドキュメント**: http://localhost:8000/docs
 - **ReDoc**: http://localhost:8000/redoc
 
-### Key API Endpoints
+### 主要なAPIエンドポイント
 
-#### Authentication
-- `POST /auth/register` - User registration
-- `POST /auth/login` - User login
-- `POST /auth/refresh` - Token refresh
+#### 認証
+- `POST /auth/register` - ユーザー登録
+- `POST /auth/login` - ユーザーログイン
+- `POST /auth/refresh` - トークン更新
 
-#### AI Copilot
-- `POST /ai/interact` - AI interaction for analysis
-- `GET /frameworks` - Available business frameworks
+#### AIコパイロット
+- `POST /ai/interact` - 分析用AIインタラクション
+- `GET /frameworks` - 利用可能なビジネスフレームワーク
 
-#### Security & Privacy
-- `POST /gdpr/consent/record` - Record GDPR consent
-- `POST /users/data-export` - Export user data
-- `POST /users/request-deletion` - Request account deletion
-- `GET /audit/logs` - Query security audit logs
+#### セキュリティ＆プライバシー
+- `POST /gdpr/consent/record` - GDPR同意の記録
+- `POST /users/data-export` - ユーザーデータのエクスポート
+- `POST /users/request-deletion` - アカウント削除のリクエスト
+- `GET /audit/logs` - セキュリティ監査ログの照会
 
-## Deployment
+## デプロイメント
 
 ### Google Cloud Platform
 
-#### Backend (Cloud Run)
+#### バックエンド (Cloud Run)
 ```bash
-# Build and deploy
+# ビルドとデプロイ
 gcloud run deploy biz-design-backend \
   --source . \
   --platform managed \
   --region us-central1
 ```
 
-#### Frontend (Cloud Run)
+#### フロントエンド (Cloud Run)
 ```bash
-# Build and deploy
+# ビルドとデプロイ
 gcloud run deploy biz-design-frontend \
   --source . \
   --platform managed \
   --region us-central1
 ```
 
-### Database Migration
+### データベースマイグレーション
 ```bash
-# Run migrations in production
+# 本番環境でのマイグレーション実行
 alembic upgrade head
 ```
 
-## Monitoring & Observability
+## 監視と可観測性
 
-- **Logs**: Google Cloud Logging with structured JSON
-- **Metrics**: Custom metrics for business and security events
-- **Alerts**: Automated alerting for security incidents
-- **Health Checks**: Comprehensive health monitoring
+- **ログ**: Google Cloud Loggingによる構造化JSONログ
+- **メトリクス**: ビジネスおよびセキュリティイベント用カスタムメトリクス
+- **アラート**: セキュリティインシデントの自動アラート
+- **ヘルスチェック**: 包括的なヘルス監視
 
-## Security Considerations
+## セキュリティ上の考慮事項
 
-### Production Checklist
-- [ ] Enable HTTPS only
-- [ ] Configure proper CORS origins
-- [ ] Set up rate limiting
-- [ ] Enable audit logging
-- [ ] Configure encryption keys
-- [ ] Set up monitoring alerts
-- [ ] Review access controls
-- [ ] Test backup/recovery procedures
+### 本番環境チェックリスト
+- [ ] HTTPSのみを有効化
+- [ ] 適切なCORSオリジンを設定
+- [ ] レート制限を設定
+- [ ] 監査ログを有効化
+- [ ] 暗号化キーを設定
+- [ ] 監視アラートを設定
+- [ ] アクセス制御をレビュー
+- [ ] バックアップ/リカバリ手順をテスト
 
-## Contributing
+## コントリビュート
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. リポジトリをフォーク
+2. 機能ブランチを作成 (`git checkout -b feature/amazing-feature`)
+3. 変更をコミット (`git commit -m 'Add amazing feature'`)
+4. ブランチにプッシュ (`git push origin feature/amazing-feature`)
+5. プルリクエストを作成
 
-## License
+## ライセンス
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+このプロジェクトはMITライセンスの下でライセンスされています - 詳細は[LICENSE](LICENSE)ファイルを参照してください。
 
-## Support
+## サポート
 
-For questions or support, please contact the development team or create an issue in the repository.
+質問やサポートについては、開発チームにお問い合わせいただくか、リポジトリにイシューを作成してください。
 
 ---
 
-**Status**: ✅ Modules 1-9 Complete | 🚧 Module 10 (Deployment) In Progress
+**ステータス**: ✅ モジュール1-9 完了 | 🚧 モジュール10（デプロイメント）進行中

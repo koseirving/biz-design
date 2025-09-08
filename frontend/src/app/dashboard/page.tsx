@@ -152,10 +152,10 @@ export default function DashboardPage() {
           <div className="flex justify-between items-start">
             <div>
               <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
-                Welcome back! 👋
+                おかえりなさい！ 👋
               </h2>
               <p className="text-gray-600 dark:text-gray-400">
-                Continue your AI-powered business framework learning journey
+                AI活用ビジネスフレームワーク学習を続けましょう
               </p>
             </div>
             
@@ -166,7 +166,7 @@ export default function DashboardPage() {
                     <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
                       🔥 {progressData.current_streak}
                     </div>
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Day Streak</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400">日連続</div>
                   </div>
                 )}
                 
@@ -175,7 +175,7 @@ export default function DashboardPage() {
                     #{progressData.ranking.rank}
                   </div>
                   <div className="text-sm text-gray-500 dark:text-gray-400">
-                    Top {progressData.ranking.percentile}%
+                    上位 {progressData.ranking.percentile}%
                   </div>
                 </div>
               </div>
@@ -190,28 +190,28 @@ export default function DashboardPage() {
               <div className="text-3xl font-bold text-yellow-600 dark:text-yellow-400 mb-2">
                 ⭐ {progressData.total_points}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Total Points</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">合計ポイント</div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
               <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
                 🏆 {progressData.earned_badges.length}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Badges Earned</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">獲得バッジ</div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
               <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
                 📋 {progressData.completed_frameworks}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Frameworks Done</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">完了フレームワーク</div>
             </div>
             
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 text-center">
               <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
                 🤖 {progressData.ai_interactions}
               </div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">AI Chats</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">AIチャット</div>
             </div>
           </div>
         )}
@@ -221,7 +221,7 @@ export default function DashboardPage() {
           <div className="lg:col-span-2">
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 mb-8">
               <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">
-                Start Learning 🚀
+                学習を始める 🚀
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -230,18 +230,18 @@ export default function DashboardPage() {
                     <div className="text-3xl mr-3">📊</div>
                     <div>
                       <h4 className="text-lg font-semibold text-blue-800 dark:text-blue-200">
-                        SWOT Analysis
+                        SWOT分析
                       </h4>
                       <p className="text-sm text-blue-600 dark:text-blue-300">
-                        100 points per completion
+                        完了で100ポイント
                       </p>
                     </div>
                   </div>
                   <p className="text-blue-600 dark:text-blue-300 mb-4 text-sm">
-                    Analyze strengths, weaknesses, opportunities, and threats with AI guidance.
+                    AIガイダンスで強み、弱み、機会、脅威を分析。
                   </p>
                   <Link href="/frameworks" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded text-sm inline-block">
-                    Start Analysis
+                    分析を開始
                   </Link>
                 </div>
                 
@@ -250,18 +250,18 @@ export default function DashboardPage() {
                     <div className="text-3xl mr-3">🗺️</div>
                     <div>
                       <h4 className="text-lg font-semibold text-green-800 dark:text-green-200">
-                        User Journey Map
+                        カスタマージャーニーマップ
                       </h4>
                       <p className="text-sm text-green-600 dark:text-green-300">
-                        100 points per completion
+                        完了で100ポイント
                       </p>
                     </div>
                   </div>
                   <p className="text-green-600 dark:text-green-300 mb-4 text-sm">
-                    Map your customer's journey with AI-powered insights.
+                    AIインサイトで顧客のジャーニーをマッピング。
                   </p>
                   <Link href="/frameworks" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded text-sm inline-block">
-                    Create Journey
+                    ジャーニー作成
                   </Link>
                 </div>
               </div>
@@ -271,7 +271,7 @@ export default function DashboardPage() {
             {progressData && (
               <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-6">
-                  Badge Progress 🎯
+                  バッジ進捗 🎯
                 </h3>
                 
                 <div className="space-y-4">
@@ -306,7 +306,7 @@ export default function DashboardPage() {
             {progressData && progressData.earned_badges.length > 0 && (
               <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-                  Your Badges 🏆
+                  獲得バッジ 🏆
                 </h3>
                 <div className="grid grid-cols-2 gap-3">
                   {progressData.earned_badges.slice(0, 6).map((badge, index) => (
@@ -323,7 +323,7 @@ export default function DashboardPage() {
                 {progressData.earned_badges.length > 6 && (
                   <div className="text-center mt-4">
                     <span className="text-sm text-gray-500 dark:text-gray-400">
-                      +{progressData.earned_badges.length - 6} more badges
+                      +{progressData.earned_badges.length - 6} 個のバッジ
                     </span>
                   </div>
                 )}
@@ -333,7 +333,7 @@ export default function DashboardPage() {
             {/* Quick Actions */}
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-                Quick Actions ⚡
+                クイックアクション ⚡
               </h3>
               <div className="space-y-3">
                 <Link
@@ -343,10 +343,10 @@ export default function DashboardPage() {
                   <div className="text-lg mr-3">🏢</div>
                   <div>
                     <div className="font-medium text-gray-800 dark:text-white text-sm">
-                      Manage Companies
+                      企業管理
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">
-                      Add your company profiles
+                      企業プロファイルを追加
                     </div>
                   </div>
                 </Link>
@@ -358,10 +358,10 @@ export default function DashboardPage() {
                   <div className="text-lg mr-3">📚</div>
                   <div>
                     <div className="font-medium text-gray-800 dark:text-white text-sm">
-                      Browse Frameworks
+                      フレームワーク一覧
                     </div>
                     <div className="text-xs text-gray-500 dark:text-gray-400">
-                      Discover new tools
+                      新しいツールを発見
                     </div>
                   </div>
                 </Link>
@@ -371,7 +371,7 @@ export default function DashboardPage() {
             {/* Recent Activity */}
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6">
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
-                Recent Activity 📈
+                最近のアクティビティ 📈
               </h3>
               {progressData && progressData.daily_points.length > 0 ? (
                 <div className="space-y-3">
@@ -391,7 +391,7 @@ export default function DashboardPage() {
               ) : (
                 <div className="text-center text-gray-500 dark:text-gray-400 py-4">
                   <div className="text-3xl mb-2">🌟</div>
-                  <p className="text-sm">Start learning to see your activity!</p>
+                  <p className="text-sm">学習を始めてアクティビティを確認しましょう！</p>
                 </div>
               )}
             </div>
