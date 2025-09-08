@@ -22,7 +22,7 @@ redis_client = redis.Redis(
 )
 
 # Initialize API Limiter
-api_limiter = APILimiter(redis=redis_client)
+api_limiter = APILimiter(redis_client=redis_client)
 
 # CORS middleware for frontend communication
 app.add_middleware(
@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(auth.router, tags=["Authentication"])
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(data_privacy.router, prefix="/users", tags=["Data Privacy"])
 app.include_router(preferences.router, prefix="/users", tags=["Preferences"])

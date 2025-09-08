@@ -375,23 +375,8 @@ async def get_retention_policies():
         )
 
 
-# Middleware to add GDPR compliance headers
-@router.middleware("http")
-async def add_gdpr_headers(request: Request, call_next):
-    """Add GDPR compliance headers to responses"""
-    
-    response = await call_next(request)
-    
-    # Add privacy-related headers
-    response.headers["X-Privacy-Policy"] = "/privacy-policy"
-    response.headers["X-GDPR-Contact"] = "privacy@company.com"
-    
-    # Check if GDPR applies to this request
-    if is_eu_user(request.client.host):
-        response.headers["X-GDPR-Applicable"] = "true"
-        response.headers["X-Data-Protection-Officer"] = "dpo@company.com"
-    
-    return response
+# Note: GDPR middleware should be added to the main FastAPI app, not the router
+# This functionality is handled in main.py middleware configuration
 
 
 # Health check endpoint for GDPR compliance system

@@ -1,13 +1,12 @@
 from typing import Dict, Any, List
-from google.generativeai.types import FunctionDeclaration, Tool
 
 
-def get_swot_function_declaration() -> FunctionDeclaration:
+def get_swot_function_declaration() -> Dict[str, Any]:
     """SWOT分析用のFunction Declarationを返す"""
-    return FunctionDeclaration(
-        name="analyze_swot",
-        description="企業の内部環境である「強み」「弱み」と、外部環境である「機会」「脅威」を特定し、企業の現状を分析する。4つの象限それぞれについて情報を収集する。",
-        parameters={
+    return {
+        "name": "analyze_swot",
+        "description": "企業の内部環境である「強み」「弱み」と、外部環境である「機会」「脅威」を特定し、企業の現状を分析する。4つの象限それぞれについて情報を収集する。",
+        "parameters": {
             "type": "object",
             "properties": {
                 "strengths": {
@@ -33,15 +32,15 @@ def get_swot_function_declaration() -> FunctionDeclaration:
             },
             "required": ["strengths", "weaknesses", "opportunities", "threats"]
         }
-    )
+    }
 
 
-def get_user_journey_function_declaration() -> FunctionDeclaration:
+def get_user_journey_function_declaration() -> Dict[str, Any]:
     """User Journey Map作成用のFunction Declarationを返す"""
-    return FunctionDeclaration(
-        name="create_user_journey",
-        description="特定のペルソナが製品やサービスを認知し、利用し、最終的なゴールに至るまでの一連の体験を時系列で可視化する。各ステージでの行動、思考、感情、課題点を明らかにする。",
-        parameters={
+    return {
+        "name": "create_user_journey",
+        "description": "特定のペルソナが製品やサービスを認知し、利用し、最終的なゴールに至るまでの一連の体験を時系列で可視化する。各ステージでの行動、思考、感情、課題点を明らかにする。",
+        "parameters": {
             "type": "object",
             "properties": {
                 "persona": {
@@ -99,15 +98,15 @@ def get_user_journey_function_declaration() -> FunctionDeclaration:
             },
             "required": ["persona", "stages"]
         }
-    )
+    }
 
 
-def get_business_model_canvas_function_declaration() -> FunctionDeclaration:
+def get_business_model_canvas_function_declaration() -> Dict[str, Any]:
     """Business Model Canvas作成用のFunction Declarationを返す"""
-    return FunctionDeclaration(
-        name="create_business_model_canvas",
-        description="ビジネスモデルの9つの要素を整理し、事業の全体像を一枚のキャンバスで可視化する。価値提案を中心に、顧客、提供方法、収益構造を明確化する。",
-        parameters={
+    return {
+        "name": "create_business_model_canvas",
+        "description": "ビジネスモデルの9つの要素を整理し、事業の全体像を一枚のキャンバスで可視化する。価値提案を中心に、顧客、提供方法、収益構造を明確化する。",
+        "parameters": {
             "type": "object",
             "properties": {
                 "value_propositions": {
@@ -158,19 +157,19 @@ def get_business_model_canvas_function_declaration() -> FunctionDeclaration:
             },
             "required": ["value_propositions", "customer_segments", "revenue_streams"]
         }
-    )
+    }
 
 
-def get_available_tools() -> List[Tool]:
+def get_available_tools() -> List[Dict[str, Any]]:
     """利用可能なFunction Declaration toolsのリストを返す"""
     return [
-        Tool(function_declarations=[get_swot_function_declaration()]),
-        Tool(function_declarations=[get_user_journey_function_declaration()]),
-        Tool(function_declarations=[get_business_model_canvas_function_declaration()])
+        {"function_declarations": [get_swot_function_declaration()]},
+        {"function_declarations": [get_user_journey_function_declaration()]},
+        {"function_declarations": [get_business_model_canvas_function_declaration()]}
     ]
 
 
-def get_function_declaration_by_framework(framework_name: str) -> FunctionDeclaration:
+def get_function_declaration_by_framework(framework_name: str) -> Dict[str, Any]:
     """フレームワーク名に基づいてFunction Declarationを返す"""
     framework_mapping = {
         "swot_analysis": get_swot_function_declaration(),
@@ -184,10 +183,10 @@ def get_function_declaration_by_framework(framework_name: str) -> FunctionDeclar
     return framework_mapping[framework_name.lower()]
 
 
-def get_tool_by_framework(framework_name: str) -> Tool:
+def get_tool_by_framework(framework_name: str) -> Dict[str, Any]:
     """フレームワーク名に基づいてToolを返す"""
     function_declaration = get_function_declaration_by_framework(framework_name)
-    return Tool(function_declarations=[function_declaration])
+    return {"function_declarations": [function_declaration]}
 
 
 def get_framework_system_prompt(framework_name: str) -> str:

@@ -4,8 +4,9 @@ import { AuthProvider } from '@/contexts/AuthContext';
 import { FrameworkProvider } from '@/contexts/FrameworkContext';
 import { AIProvider } from '@/contexts/AIContext';
 import { AccessibilityProvider } from '@/components/accessibility/AccessibilityProvider';
+import { AccessibilityMenu } from '@/components/accessibility/AccessibilityMenu';
 import "./globals.css";
-import "../styles/accessibility.css";
+import "../../styles/accessibility.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,7 @@ export default function RootLayout({
             <AIProvider>
               <AccessibilityProvider>
                 {children}
+                <AccessibilityMenu />
               </AccessibilityProvider>
             </AIProvider>
           </FrameworkProvider>

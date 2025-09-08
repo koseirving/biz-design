@@ -6,7 +6,7 @@ from datetime import datetime
 import uuid
 
 import google.generativeai as genai
-from google.generativeai.types import GenerateContentResponse, FunctionCall
+from google.generativeai.types import GenerateContentResponse
 from sqlalchemy.orm import Session
 
 from app.services.ai_function_declarations import (
@@ -160,7 +160,7 @@ class AIConversationService:
         self,
         system_prompt: str,
         conversation: List[Dict[str, Any]],
-        function_call: FunctionCall,
+        function_call: Any,
         function_result: Dict[str, Any],
         tools: List[Any]
     ) -> GenerateContentResponse:
@@ -196,7 +196,7 @@ class AIConversationService:
         db: Session,
         user: User,
         framework: BusinessFramework,
-        function_call: FunctionCall
+        function_call: Any
     ) -> Dict[str, Any]:
         """Function Callを実行し、結果を返す"""
         
